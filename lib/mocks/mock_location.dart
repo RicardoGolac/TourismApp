@@ -20,7 +20,7 @@ class MockLocation extends Location{
     Location(
         name: 'Mount Fuji',
         url:
-            'https://exploreshizuoka.com/wp-content/uploads/sites/9/2018/03/Mount-Fuji-HEADERS19-6.jpg',
+            'https://cdn3.i-scmp.com/sites/default/files/styles/landscape/public/images/methode/2018/06/22/d7202d44-746f-11e8-aa4d-d2a0e82fc143_1280x720_180911.JPG?itok=3a8L5Dav',
         facts: <LocationFact>[
           LocationFact(
               title: 'Summary',
@@ -80,5 +80,9 @@ class MockLocation extends Location{
 
   static List<Location> fetchAll() {
     return MockLocation.items;
+  }
+
+  static Location fetch(int index) {
+    return MockLocation.items[index];
   }
 }
