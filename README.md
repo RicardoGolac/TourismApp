@@ -1,6 +1,6 @@
 # tourism_app
 
-A new Flutter project.
+A new Flutter project focused on highlighting some unique areas to visit in Japan.
 
 ## Getting Started
 
