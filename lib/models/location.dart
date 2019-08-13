@@ -1,10 +1,9 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:json_annotation/json_annotation.dart';
-import './location_fact.dart';
 import '../endpoint.dart';
-
+import './location_fact.dart';
 part 'location.g.dart';
 
 @JsonSerializable()
@@ -12,18 +11,25 @@ class Location {
   final int id;
   final String name;
   final String url;
+  final String userItinerarySummary;
+  final String tourPackageName;  
   final List<LocationFact> facts;
 
-  Location({this.id, this.name, this.url, this.facts});
+  Location({this.id, this.name, this.url,      
+     this.userItinerarySummary,
+      this.tourPackageName, this.facts});
 
   Location.blank()
-    : id = 0,
-    name = '',
-    url = '',
-    facts = [];
+      : id = 0,
+        name = '',
+        url = '',
+        userItinerarySummary = '',
+        tourPackageName = '',
+        facts = [];
 
-  factory Location.fromJson(Map<String, dynamic> json) => _$LocationFromJson(json);
-  
+  factory Location.fromJson(Map<String, dynamic> json) =>
+      _$LocationFromJson(json);
+
   static Future<List<Location>> fetchAll() async {
     var uri = Endpoint.uri('/locations');
 
@@ -49,5 +55,9 @@ class Location {
     }
     final Map<String, dynamic> itemMap = json.decode(resp.body);
     return Location.fromJson(itemMap);
+  }
+
+  static Future<Location> fetchAny() async {
+    return Location.fetchByID(1);
   }
 }
